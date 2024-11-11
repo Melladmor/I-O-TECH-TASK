@@ -1,27 +1,22 @@
 import {
   useQuery,
+  useQueryClient,
+  useMutation,
   UseQueryResult,
-  UseQueryOptions,
 } from "@tanstack/react-query";
-import { UseFetchI } from "./hooks";
-import fetchData from "../functions/fetchdata";
+import { FetchDataParams } from "../utils/function";
+import fetchData from "../utils/fetchdata";
 
-type useFetchProps = UseFetchI;
-
-const useFetch = (props: useFetchProps): UseQueryResult<any> => {
-  const { params, options } = props;
-  const queryKey = options?.queryKey || [params?.url];
-
+// Generic Fetch Hook
+export const useFetch = (
+  fetchParams: FetchDataParams,
+  queryKey: string | any[]
+) => {
   const query: UseQueryResult = useQuery({
     queryKey: [queryKey],
-    queryFn: () => fetchData(params),
-    select: (data) => {
-      return data.data;
-    },
-    ...options,
+    queryFn: () => fetchData({ ...fetchParams, method: "GET" }),
+    staleTime: 5000,
   });
 
   return query;
 };
-
-export default useFetch;

@@ -1,7 +1,7 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import React from "react";
-import useFetch from "../hooks/useFetch";
 import { UseFetchI } from "../hooks/hooks";
+import { useFetch } from "../hooks/useFetch";
 
 interface RenderDataProps {
   render: (query: UseQueryResult<any, Error>) => JSX.Element;
@@ -10,7 +10,7 @@ interface RenderDataProps {
 
 const RenderData: React.FC<RenderDataProps> = ({ render, params }) => {
   const { params: queryParams, options } = params;
-  const query = useFetch({ params: queryParams, options });
+  const query = useFetch(queryParams, queryParams?.url);
 
   return <>{render(query)}</>;
 };

@@ -1,25 +1,28 @@
 import { UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
 import RenderData from "./components/RenderData";
-import useFetch from "./hooks/useFetch";
+import Posts from "./components/Posts/Posts";
 
 function App() {
   const params = {
-    url: "https://jsonplaceholder.typicode.com/todos",
+    url: "https://jsonplaceholder.typicode.com/posts",
   };
 
   return (
     <div>
-      <h1 className="text-6xl font-bold underline text-red-700">
-        Testing Tailwind
-      </h1>
       <RenderData
-        params={{ params }}
-        render={({ data }: UseQueryResult<any, Error>) => {
+        params={{
+          params: {
+            url: `${params?.url}?_limit=10`,
+          },
+        }}
+        render={({
+          data,
+          isLoading,
+          isFetching,
+        }: UseQueryResult<any, Error>) => {
           console.log(data);
           return (
-            <div>
-              <div>test </div>
-            </div>
+            <Posts data={data?.data} isLoading={isLoading || isFetching} />
           );
         }}
       />
