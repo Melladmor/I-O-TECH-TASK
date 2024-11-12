@@ -20,7 +20,12 @@ const postsSlice = createSlice({
     },
 
     addPost: (state, action: PayloadAction<Post>) => {
-      return (state = [...state, action.payload]);
+      const payloadData = {
+        ...action.payload,
+        id: crypto.randomUUID(),
+      };
+      state.unshift(payloadData);
+      //   return (state = [...state, payloadData]);
     },
 
     updatePost: (state, action: PayloadAction<Post>) => {
@@ -30,7 +35,8 @@ const postsSlice = createSlice({
       }
     },
 
-    deletePost: (state, action: PayloadAction<number | string>) => {
+    deletePost: (state, action: PayloadAction<number | string | null>) => {
+      console.log(action.payload, "action.payload");
       return state.filter((post) => post.id !== action.payload);
     },
   },

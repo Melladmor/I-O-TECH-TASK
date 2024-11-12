@@ -6,6 +6,8 @@ interface InputProps {
   register?: UseFormRegisterReturn;
   error?: FieldError;
   type?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 const Input = ({
@@ -15,6 +17,8 @@ const Input = ({
   register,
   error,
   type,
+  onChange,
+  value,
 }: InputProps) => {
   return (
     <div>
@@ -22,7 +26,14 @@ const Input = ({
         <span>{label}</span>
       </label>
       <div>
-        <input type={type} placeholder={placeholder} id={id} {...register} />
+        <input
+          type={type}
+          placeholder={placeholder}
+          id={id}
+          onChange={onChange}
+          value={value}
+          {...register}
+        />
         {error && (
           <span className="text-red-500 text-[12px] mt-2">{error.message}</span>
         )}

@@ -1,18 +1,19 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  MutationKey,
+  useMutation,
+  UseMutationOptions,
+} from "@tanstack/react-query";
 import fetchData from "../utils/fetchdata";
 import { FetchDataParams } from "../utils/function";
 
-export const useUpdate = () => {
-  const queryClient = useQueryClient();
-
+type UseUpdateProps = {
+  options?: UseMutationOptions<any, Error, any, MutationKey>;
+};
+export const useUpdate = ({ options }: UseUpdateProps) => {
   const mutate = useMutation({
     mutationFn: (updateParams: FetchDataParams) =>
       fetchData({ ...updateParams, method: "PUT" }),
-    onSuccess: (_, variables) => {
-      if (variables.url) {
-        queryClient.invalidateQueries({ queryKey: [variables.url] });
-      }
-    },
+    ...options,
   });
 
   return mutate;

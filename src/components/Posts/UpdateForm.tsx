@@ -3,12 +3,17 @@ import Input from "../FormInput.tsx/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PostI from "./type";
-import { usePost } from "../../hooks/usePost";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { addPost } from "../../redux/postsSlice";
+import { updatePost } from "../../redux/postsSlice";
+import { useUpdate } from "../../hooks/useUpdate";
 
-const AddPost = () => {
+interface UpdateFormProps {
+  post: PostI;
+  setShowUpdateForm: (e: boolean) => void;
+}
+
+const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
   const schema = yup.object().shape({
     title: yup
       .string()
@@ -27,26 +32,36 @@ const AddPost = () => {
     reset,
   } = useForm<PostI>({
     resolver: yupResolver(schema),
+    defaultValues: { title: post.title, body: post.body },
   });
 
   const dispatch = useAppDispatch();
-  const { mutate } = usePost({
+
+  const { mutate } = useUpdate({
     options: {
       onSuccess: (data) => {
-        dispatch(addPost(data?.data));
+        dispatch(updatePost(data?.data));
         reset();
+        setShowUpdateForm(false);
       },
     },
   });
+
+  useEffect(() => {
+    reset(post);
+  }, [post, reset]);
+
   const onSubmit = (data: PostI) => {
-    const newData = {
+    const updatedData = {
+      id: post.id,
       title: data.title,
       body: data.body,
-      userId: 1,
+      userId: post.userId,
     };
     mutate({
-      url: "https://jsonplaceholder.typicode.com/posts",
-      data: newData,
+      url: `https://jsonplaceholder.typicode.com/posts/${post.id}`,
+      data: updatedData,
+      method: "PUT",
     });
   };
 
@@ -62,15 +77,15 @@ const AddPost = () => {
       />
       <Input
         label="Description"
-        placeholder="Title"
+        placeholder="Description"
         type="text"
         id="body"
         register={register("body")}
         error={errors?.body}
       />
-      <button type="submit">Add</button>
+      <button type="submit">Update</button>
     </form>
   );
 };
 
-export default AddPost;
+export default UpdateForm;
