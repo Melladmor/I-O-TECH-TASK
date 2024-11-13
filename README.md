@@ -1,41 +1,42 @@
 ## Getting Started
 
-To use the project, follow these instructions:
+To set up and run this project, follow these steps:
 
-1.  Clone the repo
+1. **Clone the Repository**
     ```sh
     git clone https://github.com/Melladmor/I-O-TECH-TASK.git
     ```
-2.  Navigate into the project directory and install the dependencies using Yarn or Npm:
 
+2. **Navigate into the Project Directory**
     ```sh
     cd smartcube-task
     ```
 
-1.  Using Yarn:
+3. **Install Dependencies**
 
-    ```sh
-    yarn install
-    ```
+    - Using Yarn:
+        ```sh
+        yarn install
+        ```
+    - Using NPM:
+        ```sh
+        npm install
+        ```
 
-2.  Using Npm:
+4. **Run the React Application**
 
-    ```sh
-    npm install
-    ```
+    - Using Yarn:
+        ```sh
+        yarn dev
+        ```
+    - Using NPM:
+        ```sh
+        npm run dev
+        ```
 
-5.  Run the React Application
+---
 
-1.  Using Yarn:
-    ```sh
-    yarn dev
-    ```
-2.  Using Npm:
-    ```sh
-    npm run dev
-    ```
+### Author
 
-##### Author
-
-- Mellad Morshed
-- <a href="https://melladmorshed.netlify.app/" target="_blank">Portfolio</a>
+- **Mellad Morshed**
+- [Portfolio](https://melladmorshed.netlify.app/)
