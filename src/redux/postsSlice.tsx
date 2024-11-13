@@ -1,4 +1,3 @@
-// src/redux/postsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Post {
@@ -16,16 +15,17 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     setPosts: (state, action: PayloadAction<Post[]>) => {
-      return (state = action.payload); // Replace the entire posts array
+      state.length = 0;
+      state.push(...action.payload);
     },
 
     addPost: (state, action: PayloadAction<Post>) => {
+      const id = Number(action.payload?.id) + 1;
       const payloadData = {
         ...action.payload,
-        id: crypto.randomUUID(),
+        id: id,
       };
       state.unshift(payloadData);
-      //   return (state = [...state, payloadData]);
     },
 
     updatePost: (state, action: PayloadAction<Post>) => {
@@ -36,7 +36,6 @@ const postsSlice = createSlice({
     },
 
     deletePost: (state, action: PayloadAction<number | string | null>) => {
-      console.log(action.payload, "action.payload");
       return state.filter((post) => post.id !== action.payload);
     },
   },

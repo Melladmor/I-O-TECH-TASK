@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const Menu = (props: Props) => {
+const Menu = () => {
   return (
     <div className="relative inline-block text-left">
       <div>

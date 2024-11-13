@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState } from "react";
+
 import Input from "../FormInput.tsx/Input";
-import { useDispatch, useSelector } from "react-redux";
-import { useQueryClient } from "@tanstack/react-query";
-import { setPosts } from "../../redux/postsSlice";
-import { useAppSelector } from "../../hooks/reduxHooks";
 import Modal from "../Modal";
 import AddPost from "./AddPost";
 

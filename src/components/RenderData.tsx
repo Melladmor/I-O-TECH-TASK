@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { UseQueryResult } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { UseFetchI } from "../hooks/hooks";
 import { useFetch } from "../hooks/useFetch";
@@ -11,7 +11,7 @@ interface RenderDataProps {
 }
 
 const RenderData: React.FC<RenderDataProps> = ({ render, params }) => {
-  const { params: queryParams, options } = params;
+  const { params: queryParams } = params;
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.posts);
 

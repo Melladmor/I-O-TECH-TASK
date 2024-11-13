@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import Post from "./Post";
 import Search from "./Search";
 import PostI from "./type";
-import Menu from "../Menu";
 
 type Props = {
   isLoading: boolean;
