@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import Post from "./Post";
 import Search from "./Search";
 import PostI from "./type";
+import MainLoading from "../MainLoading";
+import Spinner from "../Spinner";
 
 type Props = {
   isLoading: boolean;
@@ -36,7 +38,7 @@ const Posts = ({ data, isLoading }: Props) => {
   return (
     <div>
       <Search search={search} setSearch={setSeacrh} />
-
+      <MainLoading />
       <div className="mt-10">
         <div className="flex gap-2 w-full flex-wrap mb-4">
           <button
@@ -61,11 +63,13 @@ const Posts = ({ data, isLoading }: Props) => {
         </div>
         {filteredPosts?.length !== 0 ? (
           <div>
-            {isLoading
-              ? "Loading"
-              : filteredPosts?.map((el: PostI) => {
-                  return <Post key={el?.id} {...el} />;
-                })}
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              filteredPosts?.map((el: PostI) => {
+                return <Post key={el?.id} {...el} />;
+              })
+            )}
           </div>
         ) : (
           <h2 className="text-lg mt-10 w-full text-center">No Data Found!</h2>
