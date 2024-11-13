@@ -8,6 +8,7 @@ import { useAppDispatch } from "../../hooks/reduxHooks";
 import { updatePost } from "../../redux/postsSlice";
 import { useUpdate } from "../../hooks/useUpdate";
 import Spinner from "../Spinner";
+import toast from "react-hot-toast";
 
 interface UpdateFormProps {
   post: PostI;
@@ -44,6 +45,10 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
         dispatch(updatePost(data?.data));
         reset();
         setShowUpdateForm(false);
+        toast.success("Updated Successfuly");
+      },
+      onError: () => {
+        toast.error("Somthing Went Wrong!");
       },
     },
   });
@@ -84,7 +89,10 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
         register={register("body")}
         error={errors?.body}
       />
-      <button type="submit" className="button btn_primary py-2">
+      <button
+        type="submit"
+        disabled={isPending}
+        className="button btn_primary py-2">
         {isPending ? <Spinner /> : "Update"}
       </button>
     </form>

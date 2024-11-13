@@ -13,10 +13,16 @@ const DeleteComponent = ({ loading, cancel, onSubmit }: Props) => {
         Are you sure you want to delete?
       </h2>
       <div className="flex justify-between gap-2">
-        <button className="button btn_ghost py-2 w-full" onClick={cancel}>
+        <button
+          disabled={loading}
+          className="button btn_ghost py-2 w-full"
+          onClick={cancel}>
           Cancel
         </button>
-        <button className="button btn_delete py-2 w-full" onClick={onSubmit}>
+        <button
+          disabled={loading}
+          className="button btn_delete py-2 w-full"
+          onClick={onSubmit}>
           {loading ? <Spinner /> : "Delete"}
         </button>
       </div>

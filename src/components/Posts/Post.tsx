@@ -9,6 +9,7 @@ import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import Modal from "../Modal";
 import DeleteComponent from "../DeleteComponent";
+import toast from "react-hot-toast";
 
 type Props = PostI;
 
@@ -23,6 +24,10 @@ const Post = ({ body, title, id, userId }: Props) => {
       onSuccess: () => {
         dispatch(deletePost(id ? id : null));
         setIsDeleteOpen(!isDeleteOpen);
+        toast.success("Deleted Successfuly");
+      },
+      onError: () => {
+        toast.error("Somthing Went Wrong!");
       },
     },
   });

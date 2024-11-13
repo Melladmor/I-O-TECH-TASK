@@ -7,6 +7,7 @@ import { usePost } from "../../hooks/usePost";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { addPost } from "../../redux/postsSlice";
 import Spinner from "../Spinner";
+import toast from "react-hot-toast";
 type Props = {
   closeModal: () => void;
 };
@@ -38,6 +39,7 @@ const AddPost = ({ closeModal }: Props) => {
         dispatch(addPost(data?.data));
         reset();
         closeModal();
+        toast.success("Added Successfuly");
       },
     },
   });
@@ -71,7 +73,10 @@ const AddPost = ({ closeModal }: Props) => {
         register={register("body")}
         error={errors?.body}
       />
-      <button type="submit" className="button btn_primary py-2">
+      <button
+        type="submit"
+        disabled={isPending}
+        className="button btn_primary py-2">
         {isPending ? <Spinner /> : "Add"}
       </button>
     </form>
