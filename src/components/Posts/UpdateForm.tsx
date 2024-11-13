@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { updatePost } from "../../redux/postsSlice";
 import { useUpdate } from "../../hooks/useUpdate";
+import Spinner from "../Spinner";
 
 interface UpdateFormProps {
   post: PostI;
@@ -37,7 +38,7 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
 
   const dispatch = useAppDispatch();
 
-  const { mutate } = useUpdate({
+  const { mutate, isPending } = useUpdate({
     options: {
       onSuccess: (data) => {
         dispatch(updatePost(data?.data));
@@ -66,7 +67,7 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       <Input
         label="Title"
         placeholder="Title"
@@ -83,7 +84,9 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
         register={register("body")}
         error={errors?.body}
       />
-      <button type="submit">Update</button>
+      <button type="submit" className="button btn_primary py-2">
+        {isPending ? <Spinner /> : "Update"}
+      </button>
     </form>
   );
 };

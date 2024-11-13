@@ -4,11 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PostI from "./type";
 import { usePost } from "../../hooks/usePost";
-import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { addPost } from "../../redux/postsSlice";
-
-const AddPost = () => {
+import Spinner from "../Spinner";
+type Props = {
+  closeModal: () => void;
+};
+const AddPost = ({ closeModal }: Props) => {
   const schema = yup.object().shape({
     title: yup
       .string()
@@ -30,11 +32,12 @@ const AddPost = () => {
   });
 
   const dispatch = useAppDispatch();
-  const { mutate } = usePost({
+  const { mutate, isPending } = usePost({
     options: {
       onSuccess: (data) => {
         dispatch(addPost(data?.data));
         reset();
+        closeModal();
       },
     },
   });
@@ -51,7 +54,7 @@ const AddPost = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       <Input
         label="Title"
         placeholder="Title"
@@ -62,13 +65,15 @@ const AddPost = () => {
       />
       <Input
         label="Description"
-        placeholder="Title"
+        placeholder="Description"
         type="text"
         id="body"
         register={register("body")}
         error={errors?.body}
       />
-      <button type="submit">Add</button>
+      <button type="submit" className="button btn_primary py-2">
+        {isPending ? <Spinner /> : "Add"}
+      </button>
     </form>
   );
 };

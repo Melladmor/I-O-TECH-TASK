@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.inner_shadow {
+  box-shadow: inset 0 2px 200px rgba(255, 255, 255, 0.2);
+}
+@layer components {
+  .container {
+    @apply text-white p-10 min-h-screen;
+  }
+  .input_group {
+    @apply flex flex-col gap-1 flex-nowrap w-full;
+  }
+  .label_group {
+    @apply text-lg;
+  }
+  .input {
+    @apply w-full h-8 rounded-md border border-solid border-gray-400 bg-transparent px-4 py-4;
+  }
+  .input_error {
+    @apply w-full h-8 rounded-md border border-solid border-red-600 bg-transparent px-4 py-4;
+  }
+  .button {
+    @apply text-white text-sm font-bold px-8 text-nowrap rounded-lg shadow-fancy transform transition-transform duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  .btn_primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-300;
+  }
+  .btn_delete {
+    @apply bg-gradient-to-r from-red-500 to-red-300;
+  }
+  .btn_ghost {
+    @apply bg-gradient-to-r from-gray-500 to-gray-300;
+  }
+  .iconButton {
+    @apply flex items-center justify-center rounded-md  text-white transition-transform duration-300 ease-out hover:scale-105;
+  }
+  .icon_btn_primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-400;
+  }
+  .icon_btn_delete {
+    @apply bg-gradient-to-r from-red-500 to-red-400;
+  }
+  .post{
+    @apply px-3 py-4 border border-solid rounded-md mb-4
+  }
+}
