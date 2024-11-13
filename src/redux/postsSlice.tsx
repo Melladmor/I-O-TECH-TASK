@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Post {
-  id: number | string;
+  id: string | number;
   title: string;
   body: string;
+  useeId?: string;
 }
 
 type PostsState = Post[];
@@ -20,10 +21,9 @@ const postsSlice = createSlice({
     },
 
     addPost: (state, action: PayloadAction<Post>) => {
-      const id = Number(action.payload?.id) + 1;
       const payloadData = {
         ...action.payload,
-        id: id,
+        id: crypto.randomUUID(),
       };
       state.unshift(payloadData);
     },

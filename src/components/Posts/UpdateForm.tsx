@@ -39,19 +39,7 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
 
   const dispatch = useAppDispatch();
 
-  const { mutate, isPending } = useUpdate({
-    options: {
-      onSuccess: (data) => {
-        dispatch(updatePost(data?.data));
-        reset();
-        setShowUpdateForm(false);
-        toast.success("Updated Successfuly");
-      },
-      onError: () => {
-        toast.error("Somthing Went Wrong!");
-      },
-    },
-  });
+  const { mutate, isPending } = useUpdate({});
 
   useEffect(() => {
     reset(post);
@@ -59,7 +47,7 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
 
   const onSubmit = (data: PostI) => {
     const updatedData = {
-      id: post.id,
+      id: String(post.id),
       title: data.title,
       body: data.body,
       userId: post.userId,
@@ -69,6 +57,12 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
       data: updatedData,
       method: "PUT",
     });
+    dispatch(updatePost(updatedData));
+    setTimeout(() => {
+      reset();
+      setShowUpdateForm(false);
+      toast.success("Updated Successfuly");
+    }, 1000);
   };
 
   return (
