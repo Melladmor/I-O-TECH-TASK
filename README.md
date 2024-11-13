@@ -12,13 +12,13 @@ To use the project, follow these instructions:
     cd smartcube-task
     ```
 
-3.  Using Yarn:
+1.  Using Yarn:
 
     ```sh
     yarn install
     ```
 
-4.  Using Npm:
+2.  Using Npm:
 
     ```sh
     npm install
@@ -26,11 +26,11 @@ To use the project, follow these instructions:
 
 5.  Run the React Application
 
-6.  Using Yarn:
+1.  Using Yarn:
     ```sh
     yarn dev
     ```
-7.  Using Npm:
+2.  Using Npm:
     ```sh
     npm run dev
     ```
