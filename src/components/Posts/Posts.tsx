@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import Post from "./Post";
 import Search from "./Search";
 import PostI from "./type";
-import MainLoading from "../MainLoading";
 import Spinner from "../Spinner";
 
 type Props = {
