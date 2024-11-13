@@ -8,6 +8,7 @@ import { useAppDispatch } from "../../hooks/reduxHooks";
 import { addPost } from "../../redux/postsSlice";
 import Spinner from "../Spinner";
 import toast from "react-hot-toast";
+import TextArea from "../FormInput.tsx/TextArea";
 type Props = {
   closeModal: () => void;
 };
@@ -65,10 +66,9 @@ const AddPost = ({ closeModal }: Props) => {
         register={register("title")}
         error={errors?.title}
       />
-      <Input
+      <TextArea
         label="Description"
         placeholder="Description"
-        type="text"
         id="body"
         register={register("body")}
         error={errors?.body}

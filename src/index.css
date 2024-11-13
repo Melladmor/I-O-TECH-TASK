@@ -21,6 +21,12 @@
   .input_error {
     @apply w-full h-8 rounded-md border border-solid border-red-600 bg-transparent px-4 py-4;
   }
+  .textarea {
+    @apply w-full rounded-md border border-solid border-gray-400 bg-transparent px-4 py-4;
+  }
+  .textarea_error {
+    @apply w-full  rounded-md border border-solid border-red-600 bg-transparent px-4 py-4;
+  }
   .button {
     @apply text-white text-sm font-bold px-8 text-nowrap rounded-lg shadow-fancy transform transition-transform duration-300 hover:scale-105 hover:shadow-lg disabled:from-gray-300 disabled:to-gray-200 disabled:hover:scale-100;
   }
