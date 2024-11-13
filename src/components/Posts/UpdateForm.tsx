@@ -57,8 +57,8 @@ const UpdateForm = ({ post, setShowUpdateForm }: UpdateFormProps) => {
       data: updatedData,
       method: "PUT",
     });
-    dispatch(updatePost(updatedData));
     setTimeout(() => {
+      dispatch(updatePost(updatedData));
       reset();
       setShowUpdateForm(false);
       toast.success("Updated Successfuly");
