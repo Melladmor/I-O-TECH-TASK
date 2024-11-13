@@ -13,7 +13,7 @@ const Search = ({ search, setSearch }: Props) => {
   const closeModal = () => setIsOpen(false);
   return (
     <div>
-      <div className="flex flex-nowrap gap-4 w-full">
+      <div className="flex flex-nowrap gap-4 lg:w-full md:w-full">
         <Input
           id="search"
           placeholder="Search"
@@ -27,9 +27,11 @@ const Search = ({ search, setSearch }: Props) => {
           New Post
         </button>
       </div>
-      <Modal title="Add New Post" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <AddPost closeModal={closeModal} />
-      </Modal>
+      {isOpen && (
+        <Modal title="Add New Post" isOpen={isOpen} setIsOpen={setIsOpen}>
+          <AddPost closeModal={closeModal} />
+        </Modal>
+      )}
     </div>
   );
 };

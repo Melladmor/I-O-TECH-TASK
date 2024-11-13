@@ -38,13 +38,13 @@ const Posts = ({ data, isLoading }: Props) => {
       <Search search={search} setSearch={setSeacrh} />
 
       <div className="mt-10">
-        <div className="flex xs:justify-between space-x-4 mb-4">
+        <div className="flex gap-2 w-full flex-wrap mb-4">
           <button
             onClick={() => {
               setSortField("title");
               setSortOrder(sortOrder === "asc" ? "desc" : "asc");
             }}
-            className="button btn_ghost shadow-none py-2 text-black">
+            className="button btn_ghost shadow-none py-2 text-black lg:w-auto md:w-auto sm:w-full xs:w-full">
             Sort by Title{" "}
             {sortOrder === "asc" && sortField === "title" ? "↓" : "↑"}
           </button>
@@ -54,7 +54,7 @@ const Posts = ({ data, isLoading }: Props) => {
               setSortField("body");
               setSortOrder(sortOrder === "asc" ? "desc" : "asc");
             }}
-            className="button btn_ghost shadow-none py-2 text-black">
+            className="button btn_ghost shadow-none py-2 text-black lg:w-auto md:w-auto sm:w-full xs:w-full">
             Sort by Description{" "}
             {sortOrder === "asc" && sortField === "body" ? "↓" : "↑"}
           </button>

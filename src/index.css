@@ -2,13 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.inner_shadow {
-  box-shadow: inset 0 2px 200px rgba(255, 255, 255, 0.2);
-}
 @layer components {
-  .container {
-    @apply text-white p-10 min-h-screen;
-  }
   .input_group {
     @apply flex flex-col gap-1 flex-nowrap w-full;
   }

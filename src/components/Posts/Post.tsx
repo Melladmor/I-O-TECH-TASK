@@ -51,23 +51,27 @@ const Post = ({ body, title, id, userId }: Props) => {
           </IconButton>
         </div>
       </div>
+      {isUpdateOpen && (
+        <Modal
+          title="Update Post"
+          isOpen={isUpdateOpen}
+          setIsOpen={setIsUpdateOpen}>
+          <UpdateForm
+            post={{ id: id, body: body, title: title, userId: userId }}
+            setShowUpdateForm={setIsUpdateOpen}
+          />
+        </Modal>
+      )}
 
-      <Modal
-        title="Update Post"
-        isOpen={isUpdateOpen}
-        setIsOpen={setIsUpdateOpen}>
-        <UpdateForm
-          post={{ id: id, body: body, title: title, userId: userId }}
-          setShowUpdateForm={setIsUpdateOpen}
-        />
-      </Modal>
-      <Modal isOpen={isDeleteOpen} setIsOpen={setIsDeleteOpen}>
-        <DeleteComponent
-          onSubmit={() => mutate(String(id))}
-          cancel={() => setIsDeleteOpen(false)}
-          loading={isPending}
-        />
-      </Modal>
+      {isDeleteOpen && (
+        <Modal isOpen={isDeleteOpen} setIsOpen={setIsDeleteOpen}>
+          <DeleteComponent
+            onSubmit={() => mutate(String(id))}
+            cancel={() => setIsDeleteOpen(false)}
+            loading={isPending}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

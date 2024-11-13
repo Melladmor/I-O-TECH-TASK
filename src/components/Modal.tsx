@@ -9,7 +9,7 @@ const Modal = ({ children, isOpen, setIsOpen, title }: Props) => {
   return (
     <div className="flex items-center justify-center bg-gray-100">
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 px-4">
           <div className="relative bg-custom-gradient-2 text-white p-8 rounded-xl  shadow-3d max-w-md w-full transform transition-transform duration-300 ease-out scale-100">
             <button
               onClick={() => setIsOpen(!isOpen)}
