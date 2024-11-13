@@ -37,7 +37,6 @@ const Posts = ({ data, isLoading }: Props) => {
   return (
     <div>
       <Search search={search} setSearch={setSeacrh} />
-      <MainLoading />
       <div className="mt-10">
         <div className="flex gap-2 w-full flex-wrap mb-4">
           <button
